@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     String numberOfDigits = "";
     Queue<String> operationsOrder = new LinkedList<>();
     String currentNumber = "null";
+    boolean firstNumber=true;
 
     public void getButtonNumber(Button num_button, TextView show_box) {
         num_button.setOnClickListener(new View.OnClickListener() {
@@ -80,8 +81,9 @@ public class MainActivity extends AppCompatActivity {
                     if (currentNumber.equals("null")) {
                         lastOp = "";
                     } else {
-                        if (calc.getResult() == 0) {
+                        if (calc.getResult() == 0 && firstNumber) {
                             calc.setResult(Double.parseDouble(currentNumber));
+                            firstNumber=false;
                         } else {
                             currentOperation = operationsOrder.poll();
                             switch (currentOperation) {
